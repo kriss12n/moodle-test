@@ -5,8 +5,6 @@ $MoodleRest = new MoodleRest();
 $MoodleRest->setServerAddress("https://educacion.citizenapp.cl/webservice/rest/server.php");
 $MoodleRest->setToken('5da89f5f2ca98b8f3d3582933c4d7095');
 
-
-
 // $groups = $MoodleRest->request(
 //     'core_group_get_groups', 
 //     array('groupids' => array(1,2))
@@ -23,23 +21,19 @@ $MoodleRest->setToken('5da89f5f2ca98b8f3d3582933c4d7095');
 
 // print_r($notes);
 
-// $users = $MoodleRest->request(
-//     'core_user_get_users',
-//     array("criteria"=>array(
-//         array(
-//             "key"=>"username",
-//             "value"=>"rodrigo"
-//         ),
-//             array(
-//             "key"=>"lastname",
-//             "value"=>"Herrera"
-//             )
-//         )
-//     )
+$users = $MoodleRest->request(
+    'core_user_get_users',
+    array("criteria"=>array(
+        array(
+            "key"=>"id",
+            "value"=>"12"
+        ),
+        )
+    ),
+    MoodleRest::RETURN_JSON
+);
 
-// );
-
-//  print_r($users);
+print_r($users);
 
 // //  $notes = $MoodleRest->request(
 // //     'enrol_self_get_instance_info', 
@@ -52,31 +46,29 @@ $MoodleRest->setToken('5da89f5f2ca98b8f3d3582933c4d7095');
 
 //  crear usuario 
 
- $new_user = array("users"=>array(
-            array("username" => "memosaurio",
-            "firstname" => "Guillermo",
-            'lastname' =>'Parra',
-            'email' => 'memosaurio@gmail.com',
-            'password' => '$$Mem1to**-',
-            'customfields'=>array(
-                 array(
-                     "type"=>"role",
-                     "value"=>"1",
-                    )   
-                )
-            )
-        )  
-    );
+// $new_user = array("users"=>array(
+//             array("username" => "mancha",
+//                 "firstname" => "Guillermo",
+//                 'lastname' =>'Parra',
+//                 'email' => 'mancha@gmail.com',
+//                 'password' => '$$Mem1to**-',
+//                 'customfields'=> array(
+//                     array(
+//                         "type"=>"rol",
+//                         "value"=>"1"
+//                         )
+                
+//             )
+//             )
+//         )  
+//     );
 
-$return = $MoodleRest->request(
-    'core_user_create_users', 
-    $new_user, 
-    MoodleRest::METHOD_POST
-);
+// $return = $MoodleRest->request(
+//     'core_user_create_users', 
+//     $new_user, 
+//     MoodleRest::METHOD_POST
+// );
 
-print_r($return);
-
-
-
+// print_r($return);
 
 ?>
