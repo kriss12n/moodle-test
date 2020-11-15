@@ -4,30 +4,15 @@ require_once dirname(__FILE__) . '/MoodleRest.php';
 $MoodleRest = new MoodleRest();
 $MoodleRest->setServerAddress("https://educacion.citizenapp.cl/webservice/rest/server.php");
 $MoodleRest->setToken('5da89f5f2ca98b8f3d3582933c4d7095');
+
+
+
 // $groups = $MoodleRest->request(
 //     'core_group_get_groups', 
 //     array('groupids' => array(1,2))
 // );
 
 // print_r($groups);
-
-$users = $MoodleRest->request(
-    'core_user_get_users',
-    array("criteria"=>array(
-        array(
-            "key"=>"username",
-            "value"=>"rodrigo"
-        ),
-            array(
-            "key"=>"lastname",
-            "value"=>"Herrera"
-            )
-        )
-    )
-
-);
-
- echo json_encode($users);
 
 
 
@@ -37,5 +22,61 @@ $users = $MoodleRest->request(
 // );
 
 // print_r($notes);
+
+// $users = $MoodleRest->request(
+//     'core_user_get_users',
+//     array("criteria"=>array(
+//         array(
+//             "key"=>"username",
+//             "value"=>"rodrigo"
+//         ),
+//             array(
+//             "key"=>"lastname",
+//             "value"=>"Herrera"
+//             )
+//         )
+//     )
+
+// );
+
+//  print_r($users);
+
+// //  $notes = $MoodleRest->request(
+// //     'enrol_self_get_instance_info', 
+// //     array('instanceid' => 4)
+// // );
+
+// // print_r($notes);
+
+
+
+//  crear usuario 
+
+ $new_user = array("users"=>array(
+            array("username" => "memosaurio",
+            "firstname" => "Guillermo",
+            'lastname' =>'Parra',
+            'email' => 'memosaurio@gmail.com',
+            'password' => '$$Mem1to**-',
+            'customfields'=>array(
+                 array(
+                     "type"=>"role",
+                     "value"=>"1",
+                    )   
+                )
+            )
+        )  
+    );
+
+$return = $MoodleRest->request(
+    'core_user_create_users', 
+    $new_user, 
+    MoodleRest::METHOD_POST
+);
+
+print_r($return);
+
+
+
 
 ?>
